@@ -1,0 +1,4 @@
+PyAudio~=0.2.14
+gTTS~=2.5.4
+pyt2s~=0.0.4
+piper-tts~=1.2.0
