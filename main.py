@@ -31,7 +31,7 @@ current_watching: Dict[int, TTSUser] = {
 }
 
 models = ["models/en_US-hfc_female-medium.onnx", "models/en_GB-cori-high.onnx", "models/en_US-kristin-medium.onnx",
-          "models/en_US-lessac-high.onnx", "models/en_US-libritts-high.onnx"]
+          "models/en_US-lessac-high.onnx", "models/en_US-libritts-high.onnx", "models/en_US-amy-medium.onnx"]
 voices = {}
 
 
