@@ -79,6 +79,7 @@ async def on_message(message: discord.Message):
         if vc is None:
             vc = await message.channel.connect(self_mute=False, self_deaf=False)
         urlremoved_content = re.sub(r'http\S+', '', message.clean_content())
+        print(urlremoved_content)
         if cfg_say_name or len(current_watching) > 1:
             # stream = get_audio_stream(f"{message.author.nick} says {message.content}")
             make_audio_file(f"{message.author.display_name} says {urlremoved_content}",
