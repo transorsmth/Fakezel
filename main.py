@@ -2,6 +2,7 @@ import asyncio
 import dataclasses
 import json
 import os
+import re
 import subprocess
 import wave
 from typing import Optional, Dict
@@ -31,7 +32,8 @@ current_watching: Dict[int, TTSUser] = {
 }
 
 models = ["models/en_US-hfc_female-medium.onnx", "models/en_GB-cori-high.onnx", "models/en_US-kristin-medium.onnx",
-          "models/en_US-lessac-high.onnx", "models/en_US-libritts-high.onnx", "models/en_US-amy-medium.onnx"]
+          "models/en_US-lessac-high.onnx", "models/en_US-libritts-high.onnx", "models/en_US-amy-medium.onnx",
+          "models/en_US-ryan-high.onnx.json"]
 voices = {}
 
 
@@ -76,14 +78,16 @@ async def on_message(message: discord.Message):
         vc: VoiceClient = ctx.guild.voice_client
         if vc is None:
             vc = await message.channel.connect(self_mute=False, self_deaf=False)
-
+        # urlremoved_content = re.sub(r'http\S+', '', message.clean_content())
+        # print(urlremoved_content)
+        urlremoved_content = message.clean_content
         if cfg_say_name or len(current_watching) > 1:
             # stream = get_audio_stream(f"{message.author.nick} says {message.content}")
-            make_audio_file(f"{message.author.display_name} says {message.clean_content}",
+            make_audio_file(f"{message.author.display_name} says {urlremoved_content}",
                             current_watching[message.author.id].voice)
         else:
             # stream = get_audio_stream(message.content)
-            make_audio_file(message.clean_content, current_watching[message.author.id].voice)
+            make_audio_file(urlremoved_content, current_watching[message.author.id].voice)
 
         if vc is not None:
             # vc.play(discord.FFmpegPCMAudio(stream, pipe=True, options='-filter:a loudnorm'),
