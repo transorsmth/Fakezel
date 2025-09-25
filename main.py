@@ -40,6 +40,7 @@ voices = {}
 def make_audio_file(text, voice: str):
     wav_file = wave.open("/tmp/hazelbot.wav", "wb")
     voices[voice].synthesize(text, wav_file)
+    os.system("rm /tmp/hazelbot.opus")
     os.system("ffmpeg -i /tmp/hazelbot.wav -c:a libopus -b:a 256000 /tmp/hazelbot.opus")
 
 
