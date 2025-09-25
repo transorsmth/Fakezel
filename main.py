@@ -38,7 +38,7 @@ voices = {}
 
 
 def make_audio_file(text, voice: str):
-    wav_file = wave.open("/tmp/hazelbot.wav", "w")
+    wav_file = wave.open("/tmp/hazelbot.wav", "wb")
     voices[voice].synthesize(text, wav_file)
 
 
