@@ -40,7 +40,7 @@ voices = {}
 def make_audio_file(text, voice: str):
     wav_file = wave.open("/tmp/hazelbot.wav", "wb")
     voices[voice].synthesize(text, wav_file)
-    os.system("ffmpeg -i /tmp/hazelbot.wav -c:a libopus -b:a 512 /tmp/hazelbot.opus")
+    os.system("ffmpeg -i /tmp/hazelbot.wav -c:a libopus -b:a 256000 /tmp/hazelbot.opus")
 
 
 def get_audio_stream(text):
@@ -94,7 +94,7 @@ async def on_message(message: discord.Message):
             # vc.play(discord.FFmpegPCMAudio(stream, pipe=True, options='-filter:a loudnorm'),
             #         after=lambda e: asyncio.run_coroutine_threadsafe(vc_mute(ctx.channel, ctx.guild), bot.loop))
 
-            vc.play(discord.FFmpegOpusAudio("/tmp/hazelbot.opus", bitrate=256000),
+            vc.play(discord.FFmpegOpusAudio("/tmp/hazelbot.opus", bitrate=256),
                     #, options='-ar 22050'), #, options='-filter:a "setpts=0.7*PTS"'),
                     after=lambda e: asyncio.run_coroutine_threadsafe(vc_mute(ctx.channel, ctx.guild), bot.loop),
                     signal_type='voice', bandwidth='full', bitrate=128, application='audio')
