@@ -96,7 +96,7 @@ async def on_message(message: discord.Message):
             vc.play(discord.FFmpegPCMAudio("/tmp/hazelbot.wav"),
                     #, options='-ar 22050'), #, options='-filter:a "setpts=0.7*PTS"'),
                     after=lambda e: asyncio.run_coroutine_threadsafe(vc_mute(ctx.channel, ctx.guild), bot.loop),
-                    signal_type='voice', bandwidth='full', bitrate=352, application='voip')
+                    signal_type='voice', bandwidth='full', bitrate=128, application='audio')
 
 
 def load_voice(index):
