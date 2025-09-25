@@ -53,7 +53,7 @@ async def on_ready():
 
 
 async def vc_mute(channel, guild: discord.Guild):
-    await asyncio.sleep(0.2)
+    await asyncio.sleep(0.4)
     await guild.change_voice_state(channel=channel, self_mute=True, self_deaf=True)
 
 
