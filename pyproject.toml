@@ -6,6 +6,6 @@ requires-python = "==3.11.*"
 dependencies = [
     "discord-py[voice]>=2.6.3",
     "gtts>=2.5.4",
-    "piper-tts==1.2.0",
+    "piper-tts==1.1.0",
     "piper-phonemize==1.0.0"
 ]
